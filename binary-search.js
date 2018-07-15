@@ -1,5 +1,16 @@
+/**
+ * Complexity of a Binary search is lgn
+ * @type {number[]}
+ */
+
 const primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
 
+/**
+ * Binary search of a number in the array
+ * @param array - sorted array of number
+ * @param target - number to search
+ * @returns {number} - index of number or -1 if it does not exist
+ */
 function binarySearch(array, target) {
     let min = 0;
     let max = primes.length - 1;
