@@ -5,7 +5,7 @@
  * Which will be equal to n^2/2 + n/2.
  * In terms of big Theta notation, we don't care about that constant factor,
  * nor do we care about the factor 1/2 or the low-order term.
- * The result is that the running time for all the calls to nested loop is big Theta of (n^2)
+ * The result is that the running time for all the calls to nested loop is Θ(n^2)
  * @param array - array to sort
  */
 function selectionSort(array) {
