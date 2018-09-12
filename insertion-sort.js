@@ -48,6 +48,34 @@ function insertionSort(array) {
     }
 }
 
+/**
+ * Swapping two elements in the array
+ * @param array - initial array
+ * @param index1 - first index to swap
+ * @param index2 - second index to swap
+ */
+function swap(array, index1, index2) {
+    let tmp = array[index1];
+    array[index1] = array[index2];
+    array[index2] = tmp;
+}
+
+/**
+ * Insertion sort implementation using for and while loops
+ * @param array - array to sort
+ */
+function insertionSort2(array) {
+    for (let j = 1; j < array.length; j++) {
+        let i = j - 1;
+
+        while(i >=0 && array[i] > array[i + 1]) {
+            swap(array, i, i + 1);
+
+            i--;
+        }
+    }
+}
+
 const array = [22, 11, 99, 88, 9, 7, 42];
 insertionSort(array);
 console.log(array);
@@ -55,3 +83,11 @@ console.log(array);
 const array2 = [22, 11, 99, 88, 9, 7, 42, 0, 15, -1];
 insertionSort(array2);
 console.log(array2);
+
+const array_2 = [22, 11, 99, 88, 9, 7, 42];
+insertionSort2(array_2);
+console.log(array_2);
+
+const array2_2 = [22, 11, 99, 88, 9, 7, 42, 0, 15, -1];
+insertionSort2(array2_2);
+console.log(array2_2);
