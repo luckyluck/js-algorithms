@@ -19,10 +19,14 @@ function selectionSort(array) {
                 minIndex = j;
             }
         }
-        // Swapping minimum value with current position
-        const temp = array[i];
-        array[i] = array[minIndex];
-        array[minIndex] = temp;
+        if (minIndex !== i) {
+            // Swapping minimum value with current position
+            // const temp = array[i];
+            // array[i] = array[minIndex];
+            // array[minIndex] = temp;
+            // ES2015 syntax
+            [array[i], array[minIndex]] = [array[minIndex], array[i]];
+        }
     }
 }
 
@@ -32,3 +36,6 @@ console.log('Array after sorting:', array1);
 const array2 = [22, 11, 99, 0, 9, 7, 42, -1, 15];
 selectionSort(array2);
 console.log('Array after sorting:', array2);
+const array3 = [0, 2, 34, 22, 10, 19, 17];
+selectionSort(array3);
+console.log('Array after sorting:', array3);
