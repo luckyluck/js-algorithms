@@ -18,76 +18,23 @@
  * Average case for a random array: Θ(n^2)
  * "Almost sorted" case: Θ(n).
  */
+function insertionSort3(arr) {
+    const insert = (arr, index1, index2) => {
+        [arr[index1], arr[index2]] = [arr[index2], arr[index1]];
+    };
 
-/**
- * Inserted a value into the sorted sub-array of a given array
- * @param array - initial array
- * @param rightIndex - index to start check from
- * @param value - value to insert
- */
-function insert(array, rightIndex, value) {
-    // Going from right to left sliding elements which is bigger than current key (array[i])
-    let j;
-    for(j = rightIndex; j >= 0 && array[j] > value; j--) {
-        array[j + 1] = array[j];
-    }
-    // Putting key into the emptied space
-    array[j + 1] = value;
-}
+    for (let i = 1; i < arr.length; i++) {
+        let j = i - 1;
 
-/**
- * Insertion sort
- * @param array - unsorted array
- */
-function insertionSort(array) {
-    const l = array.length;
-
-    // Iterating through array starting from index 1 (to be able to slide)
-    for (let i = 1; i < l; i++) {
-        insert(array, i - 1, array[i]);
-    }
-}
-
-/**
- * Swapping two elements in the array
- * @param array - initial array
- * @param index1 - first index to swap
- * @param index2 - second index to swap
- */
-function swap(array, index1, index2) {
-    let tmp = array[index1];
-    array[index1] = array[index2];
-    array[index2] = tmp;
-}
-
-/**
- * Insertion sort implementation using for and while loops
- * @param array - array to sort
- */
-function insertionSort2(array) {
-    for (let j = 1; j < array.length; j++) {
-        let i = j - 1;
-
-        while(i >=0 && array[i] > array[i + 1]) {
-            swap(array, i, i + 1);
-
-            i--;
+        while (j >= 0 && arr[j] > arr[j + 1]) {
+            insert(arr, j, j + 1);
+            j--;
         }
     }
+
+    return arr;
 }
 
-const array = [22, 11, 99, 88, 9, 7, 42];
-insertionSort(array);
-console.log(array);
-
-const array2 = [22, 11, 99, 88, 9, 7, 42, 0, 15, -1];
-insertionSort(array2);
-console.log(array2);
-
-const array_2 = [22, 11, 99, 88, 9, 7, 42];
-insertionSort2(array_2);
-console.log(array_2);
-
-const array2_2 = [22, 11, 99, 88, 9, 7, 42, 0, 15, -1];
-insertionSort2(array2_2);
-console.log(array2_2);
+console.log(insertionSort3([2, 1, 9, 76, 4]));
+console.log(insertionSort3([22, 11, 99, 88, 9, 7, 42]));
+console.log(insertionSort3([22, 11, 99, 88, 9, 7, 42, 0, 15, -1]));
