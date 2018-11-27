@@ -1,33 +1,20 @@
-// Swaps two items in an array, changing the original array
-function swap(array, firstIndex, secondIndex) {
-    const temp = array[firstIndex];
-    array[firstIndex] = array[secondIndex];
-    array[secondIndex] = temp;
-}
+// This function partitions given array and returns the index of the pivot.
+function pivot(arr, start = 0, end = arr.length + 1) {
+    let p = arr[start];
+    let swapIndex = start;
 
-// This function partitions given array and returns
-//  the index of the pivot.
-function partition(array, p, r) {
-    let q = p;
-    // Compare array[j] with array[r], for j = p, p+1,...r-1 maintaining that:
-    //  array[p..q-1] are values known to be <= to array[r]
-    //  array[q..j-1] are values known to be > array[r]
-    //  array[j..r-1] haven't been compared with array[r]
-    for (let j = p; j < r; j++) {
-        // If array[j] > array[r], just increment j.
-        // If array[j] <= array[r], swap array[j] with array[q],
-        //   increment q, and increment j.
-        if (array[j] <= array[r]) {
-            swap(array, q, j);
-            q++;
+    for (let i = start + 1; i < end; i++) {
+        if (p > arr[i]) {
+            swapIndex++;
+            // swap
+            [arr[i], arr[swapIndex]] = [arr[swapIndex], arr[i]];
         }
     }
-    // Once all elements in array[p..r-1]
-    //  have been compared with array[r],
-    //  swap array[r] with array[q], and return q.
-    swap(array, q, r);
 
-    return q;
+    // swap the pivot with last swapped index
+    [arr[start], arr[swapIndex]] = [arr[swapIndex], arr[start]];
+
+    return swapIndex;
 }
 
 /**
@@ -47,16 +34,18 @@ function partition(array, p, r) {
  * You get the picture. Of course, it doesn't necessarily pay to choose a large number of elements at random and take their median,
  * for the time spent doing so could counteract the benefit of getting good splits almost all the time.
  *
- * @param array
- * @param p
- * @param r
+ * @param arr
+ * @param left
+ * @param right
  */
-function quickSort(array, p, r) {
-    if (p < r) {
-        const pivot = partition(array, p, r);
-        quickSort(array, p, pivot - 1);
-        quickSort(array, pivot + 1, r);
+function quickSort(arr, left = 0, right = arr.length - 1) {
+    if (left < right) {
+        const pivotIndex = pivot(arr, left, right);
+        quickSort(arr, left, pivotIndex - 1);
+        quickSort(arr, pivotIndex + 1, right);
     }
+
+    return arr;
 }
 
 const array1 = [9, 7, 5, 11, 12, 2, 14, 3, 10, 6];
