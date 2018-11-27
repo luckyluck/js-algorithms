@@ -38,19 +38,16 @@ function pivot(arr, start = 0, end = arr.length + 1) {
  * @param left
  * @param right
  */
-function quickSort(arr, left = 0, right = arr.length - 1) {
+function quickSort(arr, left = 0, right = arr.length) {
     if (left < right) {
         const pivotIndex = pivot(arr, left, right);
-        quickSort(arr, left, pivotIndex - 1);
+        quickSort(arr, left, pivotIndex);
         quickSort(arr, pivotIndex + 1, right);
     }
 
     return arr;
 }
 
-const array1 = [9, 7, 5, 11, 12, 2, 14, 3, 10, 6];
-quickSort(array1, 0, array1.length - 1);
-console.log('Array after sorting:', array1);
-const array2 = [9, 7, 5, 11, 12, 0, 14, 3, 10, 6, -1];
-quickSort(array2, 0, array2.length - 1);
-console.log('Array after sorting:', array2);
+console.log(quickSort([4, 8, 2, 1, 5, 7, 6, 3]));
+console.log(quickSort([9, 7, 5, 11, 12, 2, 14, 3, 10, 6]));
+console.log(quickSort([9, 7, 5, 11, 12, 0, 14, 3, 10, 6, -1]));
